@@ -19,7 +19,7 @@ jobs:
   check-prerequisites:
     runs-on: ubuntu-latest
     outputs:
-      should_skip: ${{ steps.check_merge.outputs.result }}
+      should_skip: ${{ steps.check_merge.outputs.should_skip }}
     steps:
       - name: Check if triggered by merge commit
         id: check_merge
@@ -27,7 +27,8 @@ jobs:
         with:
           script: |
             if (context.eventName !== 'push') {
-              return 'false';
+              core.setOutput('should_skip', 'false');
+              return;
             }
             const commit = await github.rest.repos.getCommit({
               owner: context.repo.owner,
@@ -37,9 +38,10 @@ jobs:
             const isMerge = commit.data.parents.length > 1;
             if (isMerge) {
               console.log('Triggered by merge commit, skipping workflow to prevent loop');
-              return 'true';
+              core.setOutput('should_skip', 'true');
+            } else {
+              core.setOutput('should_skip', 'false');
             }
-            return 'false';
 
   build-and-deploy:
     needs: check-prerequisites
