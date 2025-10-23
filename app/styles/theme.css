@@ -30,7 +30,7 @@
   --oui-color-warning-darken: 255 152 0;
   --oui-color-warning-contrast: 255 255 255;
 
-  --oui-color-fill: 36 32 47;
+  --oui-color-fill: 5 25 40;
   --oui-color-fill-active: 40 46 58;
 
   --oui-color-base-1: 93 83 123;
@@ -41,8 +41,8 @@
   --oui-color-base-6: 43 38 56;
   --oui-color-base-7: 36 32 47;
   --oui-color-base-8: 29 26 38;
-  --oui-color-base-9: 22 20 28;
-  --oui-color-base-10: 14 13 18;
+  --oui-color-base-9: 5 25 40;
+  --oui-color-base-10: 0 0 0;
 
   --oui-color-base-foreground: 255 255 255;
   --oui-color-line: 255 255 255;
